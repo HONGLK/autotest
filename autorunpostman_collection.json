@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "e00d3f7c-f8c1-4d40-94d6-3732b551af65",
+		"name": "自動化測試",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "加鹽",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "param",
+							"value": "hong",
+							"description": "密碼",
+							"type": "text"
+						},
+						{
+							"key": "param2",
+							"value": "clag2258",
+							"description": "key",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://221.120.40.74:8080/POSWEB/?action=PHASH",
+					"protocol": "http",
+					"host": [
+						"221",
+						"120",
+						"40",
+						"74"
+					],
+					"port": "8080",
+					"path": [
+						"POSWEB",
+						""
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "PHASH"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4b8aca22-d142-49e5-99e5-3e764480ecff",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\",jsonData.data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "CMD",
+							"value": "Login",
+							"description": "指令",
+							"type": "text"
+						},
+						{
+							"key": "uid",
+							"value": "hong",
+							"description": "帳號",
+							"type": "text"
+						},
+						{
+							"key": "pwd",
+							"value": "$2b$10$3QvE9W/xAPkHkM.hvvATs.P7gblDkHGQ7V3PUJ5DZrD2tOv8CqxZy",
+							"description": "加鹽過後密碼",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://221.120.40.74:8080/POSWEB/?action=LOGIN",
+					"protocol": "http",
+					"host": [
+						"221",
+						"120",
+						"40",
+						"74"
+					],
+					"port": "8080",
+					"path": [
+						"POSWEB",
+						""
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "LOGIN"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login<getkey",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "CMD",
+							"value": "Getkey",
+							"description": "指令",
+							"type": "text"
+						},
+						{
+							"key": "uid",
+							"value": "hong",
+							"description": "帳號",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://221.120.40.74:8080/POSWEB/?action=GETKEY",
+					"protocol": "http",
+					"host": [
+						"221",
+						"120",
+						"40",
+						"74"
+					],
+					"port": "8080",
+					"path": [
+						"POSWEB",
+						""
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "GETKEY"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"id": "63938fee-c11c-42cd-83d5-2aeecfaeecb0",
+			"key": "domain",
+			"value": "221.120.40.74:8080",
+			"type": "string"
+		},
+		{
+			"id": "beacc714-4208-446b-b960-b4da0079aa0b",
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
